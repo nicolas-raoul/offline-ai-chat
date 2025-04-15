@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="geminimultimodal_title_bar">Gemini Multimodal</string>
-    <string name="geminimultimodal_prompt_placeholder">Describe this picture in a funny way with a lot of emojis</string>
-    <string name="geminimultimodal_generating">Generating&#8230;</string>
-</resources>
