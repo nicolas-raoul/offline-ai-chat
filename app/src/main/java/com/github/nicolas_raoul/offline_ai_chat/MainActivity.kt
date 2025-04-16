@@ -16,10 +16,18 @@
 
 package com.github.nicolas_raoul.offline_ai_chat
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -77,6 +85,43 @@ class MainActivity : AppCompatActivity() {
     initGenerativeModel()
   }
 
+  override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
+    menuInflater.inflate(R.menu.main_menu, menu)
+    return true
+  }
+
+  override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+    return when (item.itemId) {
+      R.id.action_about -> {
+        val message = getString(R.string.about_content)
+        val spannableString = SpannableString(message)
+        val url = "https://github.com/nicolas-raoul/offline-ai-chat"
+        val startIndex = message.indexOf(url)
+        val endIndex = startIndex + url.length
+
+        val clickableSpan = object : ClickableSpan() {
+          override fun onClick(widget: View) {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+          }
+        }
+
+        spannableString.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        val dialog = android.app.AlertDialog.Builder(this)
+          .setTitle(R.string.app_name)
+          .setMessage(spannableString)
+          .setPositiveButton(android.R.string.ok, null)
+          .show()
+
+        // Make the text view clickable
+        dialog.findViewById<TextView>(android.R.id.message)?.movementMethod = LinkMovementMethod.getInstance()
+        true
+      }
+      else -> super.onOptionsItemSelected(item)
+    }
+  }
+
   override fun onDestroy() {
     super.onDestroy()
     model?.close()
@@ -127,7 +172,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun endGeneratingUi() {
-    sendButton?.setText(R.string.button_send)
+    sendButton?.setText(R.string.button_generate)
     contentRecyclerView?.smoothScrollToPosition(contentAdapter.itemCount - 1)
   }
 }

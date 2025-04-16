@@ -16,21 +16,14 @@
 -->
 <resources>
   <string name="app_name" translatable="false">Offline AI chat</string>
-  <string name="kotlin_entry_title" translatable="false">Run the demo written in Kotlin</string>
-  <string name="java_entry_title" translatable="false">Run the demo written in Java</string>
-  <string name="button_send" translatable="false">Send</string>
-  <string name="generating" translatable="false">Generating...</string>
-  <string name="streaming_switch" translatable="false">Streaming</string>
-  <string name="hint_temperature" translatable="false">Temperature</string>
-  <string name="hint_top_k" translatable="false">TopK</string>
-  <string name="hint_max_output_tokens" translatable="false">MaxOutputTokens</string>
-  <string name="pref_key_temperature" translatable="false">pk_temp</string>
-  <string name="pref_key_top_k" translatable="false">pk_topk</string>
-  <string name="pref_key_max_output_tokens" translatable="false">pk_mot</string>
-  <string name="button_change_config" translatable="false">Change config</string>
-  <string name="button_save" translatable="false">Save</string>
+  <string name="button_generate" translatable="false">Generate</string>
   <string name="button_cancel" translatable="false">Cancel</string>
-  <string name="model_unavailable" translatable="false">Model is unavailable yet and downloading in background</string>
   <string name="prompt_is_empty" translatable="false">Please enter an non empty prompt</string>
   <string name="empty" translatable="false"/>
+  <string name="disclaimer_title">Important:</string>
+  <string name="disclaimer_device">Only works on Pixel 9. If it works on other devices, please let me know (nicolas.raoul@gmail.com).</string>
+  <string name="disclaimer_hallucination">Hallucinates a lot, due to small model size. That\'s the drawback for being usable without network.</string>
+  <string name="disclaimer_conversation">Each question is considered as a new conversation.</string>
+  <string name="menu_about" translatable="false">About</string>
+  <string name="about_content" translatable="false">App source code is open: https://github.com/nicolas-raoul/offline-ai-chat\n\nPull requests very welcome!\n\nUses your device\'s embedded AICore model (presumably Gemini Nano).</string>
 </resources>
