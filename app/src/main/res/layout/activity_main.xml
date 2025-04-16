@@ -21,30 +21,6 @@
     android:layout_margin="4dp"
     android:orientation="vertical">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="end"
-      android:orientation="horizontal">
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/streaming_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:checked="true"
-        android:text="@string/streaming_switch" />
-
-    <Button
-        android:id="@+id/config_button"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:text="@string/button_change_config" />
-
-  </LinearLayout>
-
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/content_recycler_view"
       android:layout_width="match_parent"
