@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.nicolas_raoul.offline_ai_chat.kotlin
+package com.github.nicolas_raoul.offline_ai_chat
 
 import android.os.Bundle
 import android.text.TextUtils
