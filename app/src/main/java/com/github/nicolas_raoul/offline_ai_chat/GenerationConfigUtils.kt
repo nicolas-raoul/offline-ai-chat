@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.ai.edge.aicore.demo
+package com.github.nicolas_raoul.offline_ai_chat
 
 import android.content.Context
 import androidx.preference.PreferenceManager

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.ai.edge.aicore.demo.kotlin
+package com.github.nicolas_raoul.offline_ai_chat.kotlin
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -28,10 +28,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.ai.edge.aicore.GenerativeAIException
 import com.google.ai.edge.aicore.GenerativeModel
-import com.google.ai.edge.aicore.demo.ContentAdapter
-import com.google.ai.edge.aicore.demo.GenerationConfigDialog
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils
-import com.google.ai.edge.aicore.demo.R
+import com.github.nicolas_raoul.offline_ai_chat.ContentAdapter
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigDialog
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils
+import com.github.nicolas_raoul.offline_ai_chat.R
 import com.google.ai.edge.aicore.generationConfig
 import java.util.concurrent.Future
 import kotlinx.coroutines.flow.onCompletion

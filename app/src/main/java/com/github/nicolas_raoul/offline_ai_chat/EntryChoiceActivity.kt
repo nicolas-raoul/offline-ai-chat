@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.ai.edge.aicore.demo
+package com.github.nicolas_raoul.offline_ai_chat
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,7 +28,8 @@ import com.google.ai.edge.aicore.DownloadCallback
 import com.google.ai.edge.aicore.DownloadConfig
 import com.google.ai.edge.aicore.GenerativeAIException
 import com.google.ai.edge.aicore.GenerativeModel
-import com.google.ai.edge.aicore.demo.java.MainActivity
+import com.github.nicolas_raoul.offline_ai_chat.java.MainActivity as JavaMainActivity
+import com.github.nicolas_raoul.offline_ai_chat.kotlin.MainActivity as KotlinMainActivity
 import com.google.ai.edge.aicore.generationConfig
 import java.lang.String.format
 import java.util.Locale
@@ -48,7 +49,7 @@ class EntryChoiceActivity : AppCompatActivity() {
         val intent =
           Intent(
             this@EntryChoiceActivity,
-            com.google.ai.edge.aicore.demo.kotlin.MainActivity::class.java,
+            com.github.nicolas_raoul.offline_ai_chat.kotlin.MainActivity::class.java,
           )
         startActivity(intent)
       } else {
@@ -58,7 +59,7 @@ class EntryChoiceActivity : AppCompatActivity() {
 
     findViewById<TextView>(R.id.java_entry_point).setOnClickListener {
       if (modelDownloaded) {
-        val intent = Intent(this@EntryChoiceActivity, MainActivity::class.java)
+        val intent = Intent(this@EntryChoiceActivity, JavaMainActivity::class.java)
         startActivity(intent)
       } else {
         Toast.makeText(this, R.string.model_unavailable, Toast.LENGTH_SHORT).show()

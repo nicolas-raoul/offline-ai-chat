@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.ai.edge.aicore.demo.java;
+package com.github.nicolas_raoul.offline_ai_chat.java;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -33,11 +33,11 @@ import com.google.ai.edge.aicore.Content;
 import com.google.ai.edge.aicore.GenerateContentResponse;
 import com.google.ai.edge.aicore.GenerationConfig;
 import com.google.ai.edge.aicore.GenerativeModel;
-import com.google.ai.edge.aicore.demo.ContentAdapter;
-import com.google.ai.edge.aicore.demo.GenerationConfigDialog;
-import com.google.ai.edge.aicore.demo.GenerationConfigDialog.OnConfigUpdateListener;
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils;
-import com.google.ai.edge.aicore.demo.R;
+import com.github.nicolas_raoul.offline_ai_chat.ContentAdapter;
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigDialog;
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigDialog.OnConfigUpdateListener;
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils;
+import com.github.nicolas_raoul.offline_ai_chat.R;
 import com.google.ai.edge.aicore.java.GenerativeModelFutures;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;

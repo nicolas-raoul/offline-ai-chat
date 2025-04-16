@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.ai.edge.aicore.demo
+package com.github.nicolas_raoul.offline_ai_chat
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -23,12 +23,12 @@ import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import android.widget.EditText
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils.getMaxOutputTokens
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils.getTemperature
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils.getTopK
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils.setMaxOutputTokens
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils.setTemperature
-import com.google.ai.edge.aicore.demo.GenerationConfigUtils.setTopK
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils.getMaxOutputTokens
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils.getTemperature
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils.getTopK
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils.setMaxOutputTokens
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils.setTemperature
+import com.github.nicolas_raoul.offline_ai_chat.GenerationConfigUtils.setTopK
 
 class GenerationConfigDialog : DialogFragment() {
   interface OnConfigUpdateListener {
