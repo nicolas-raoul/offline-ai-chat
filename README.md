@@ -1,6 +1,14 @@
 # Offline AI chat
 
-Forked from https://github.com/android/ai-samples
+Get answers even when no Internet is available.
+
+Important:
+- Only works on Pixel 9. If it works on other devices, please let me know. :-)
+- Hallucinates a lot, due to small model size. That's the drawback for being usable without network.
+- Each question is considered as a new conversation.
+
+App source code is open. Pull requests very welcome!
+Uses your device's embedded AICore model (presumably Gemini Nano).
 
 ## License
 
