@@ -26,4 +26,9 @@
   <string name="disclaimer_conversation">Each question is considered as a new conversation.</string>
   <string name="menu_about" translatable="false">About</string>
   <string name="about_content" translatable="false">App source code is open: https://github.com/nicolas-raoul/offline-ai-chat\n\nPull requests very welcome!\n\nUses your device\'s embedded AICore model (presumably Gemini Nano).</string>
+  <string name="error" translatable="false">Before using this app, please </string>
+  <string name="aicore_setup_title">AICore Setup Required</string>
+  <string name="checking_aicore">Checking AICore Beta...</string>
+  <string name="aicore_setup_instructions">This application relies on AICore Beta, so let\'s install it first:\n\n1. Join the aicore-experimental Google group.\n2. Opt in to the Android AICore testing program.\n3. Go for a walk. An hour later, on the Play store, make sure you have \"Android AICore (Beta)\" installed. If the \"(Beta)\" suffix is not present, update your apps, reboot, and wait it a bit more. Thank you for your patience!</string>
+  <string name="retry">Retry</string>
 </resources>
