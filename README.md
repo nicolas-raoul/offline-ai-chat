@@ -7,7 +7,7 @@ Important:
 - Hallucinates a lot, due to small model size. That's the drawback for being usable without network.
 - Each question is considered as a new conversation.
 
-App source code is open. Pull requests very welcome!
+App source code is open. Pull requests very welcome!  
 Uses your device's embedded AICore model (presumably Gemini Nano).
 
 ## License
