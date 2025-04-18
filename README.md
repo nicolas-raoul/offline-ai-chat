@@ -10,6 +10,13 @@ Important:
 App source code is open. Pull requests very welcome!  
 Uses your device's embedded AICore model (presumably Gemini Nano).
 
+<table>
+  <tr>
+    <td><img src="design/screenshot1.png" alt="Screenshot" width="300"/></td>
+    <td><img src="design/screenshot2.png" alt="Screenshot" width="300"/></td>
+  </tr>
+</table>
+
 ## License
 
 Copyright 2024 Google, Inc.
