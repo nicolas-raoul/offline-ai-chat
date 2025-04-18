@@ -171,6 +171,7 @@ class MainActivity : AppCompatActivity() {
           android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.message}")
           endGeneratingUi()
         }
+        inGenerating = false
       }
   }
 
