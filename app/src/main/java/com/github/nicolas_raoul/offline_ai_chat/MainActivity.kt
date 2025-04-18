@@ -24,9 +24,12 @@ import android.text.Spanned
 import android.text.TextUtils
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -41,8 +44,8 @@ import com.google.ai.edge.aicore.generationConfig
 import java.util.concurrent.Future
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.future.future
+import kotlinx.coroutines.launch
 
-/** Demonstrates the AICore SDK usage from Kotlin. */
 class MainActivity : AppCompatActivity() {
 
   private var requestEditText: EditText? = null
@@ -57,6 +60,11 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+
+    // Show app icon in title bar
+    supportActionBar?.setDisplayShowHomeEnabled(true)
+    supportActionBar?.setLogo(R.mipmap.ic_launcher)
+    supportActionBar?.setDisplayUseLogoEnabled(true)
 
     requestEditText = findViewById(R.id.request_edit_text)
     sendButton = findViewById(R.id.send_button)
@@ -85,12 +93,12 @@ class MainActivity : AppCompatActivity() {
     initGenerativeModel()
   }
 
-  override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
+  override fun onCreateOptionsMenu(menu: Menu): Boolean {
     menuInflater.inflate(R.menu.main_menu, menu)
     return true
   }
 
-  override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
     return when (item.itemId) {
       R.id.action_about -> {
         val message = getString(R.string.about_content)
@@ -160,7 +168,7 @@ class MainActivity : AppCompatActivity() {
               }
             }
         } catch (e: GenerativeAIException) {
-          contentAdapter.addContent(ContentAdapter.VIEW_TYPE_RESPONSE_ERROR, e.message!!)
+          android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.message}")
           endGeneratingUi()
         }
       }

@@ -25,10 +25,10 @@ android {
 
     defaultConfig {
         applicationId "com.github.nicolas_raoul.offline_ai_chat"
-        minSdk 31
+        minSdk 34 // Pixel 9 shipped with Android 14, which is SDK 34. Prevent older devices from installing.
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

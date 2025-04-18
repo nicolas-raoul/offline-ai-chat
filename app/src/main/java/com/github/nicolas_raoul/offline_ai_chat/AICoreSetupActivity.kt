@@ -2,6 +2,7 @@ package com.github.nicolas_raoul.offline_ai_chat
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
@@ -19,10 +20,17 @@ class AICoreSetupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aicore_setup)
         
+        // Show app icon in title bar
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setLogo(R.mipmap.ic_launcher)
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+        
         val statusText = findViewById<TextView>(R.id.status_text)
         val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
         val instructionsText = findViewById<TextView>(R.id.instructions_text)
         val retryButton = findViewById<Button>(R.id.retry_button)
+        
+        instructionsText.movementMethod = LinkMovementMethod.getInstance()
         
         fun showSetupInstructions() {
             statusText.setText(R.string.aicore_setup_title)
@@ -74,10 +82,10 @@ class AICoreSetupActivity : AppCompatActivity() {
             model!!.generateContentStream("Why is the sky blue?")
                 .collect { response ->
                     responseText += response.text
-                    android.util.Log.d("AICoreSetup", "Received chunk: ${response.text}")
+                    android.util.Log.d("Offline AI chat AICoreSetup", "Received chunk: ${response.text}")
                 }
             
-            android.util.Log.d("AICoreSetup", "Final response text: $responseText")
+            android.util.Log.d("Offline AI chat AICoreSetup", "Final response text: $responseText")
             responseText.contains("sky", ignoreCase = true)
         } catch (e: Exception) {
             false
