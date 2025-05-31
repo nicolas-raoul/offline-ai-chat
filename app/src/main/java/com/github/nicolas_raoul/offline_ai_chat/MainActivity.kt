@@ -52,6 +52,10 @@ class MainActivity : AppCompatActivity() {
   private var sendButton: Button? = null
   private var contentRecyclerView: RecyclerView? = null
   private var model: GenerativeModel? = null
+  
+  /**
+   * Tracks whether a generation process is currently active.
+   */
   private var inGenerating = false
   private var generateContentFuture: Future<Unit>? = null
 
