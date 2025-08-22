@@ -3,7 +3,7 @@
 Get answers even when no Internet is available.
 
 Important:
-- Only works on Pixel 9. If it works on other devices, please let me know. :-)
+- Only works on Pixel 9+. If it works on other devices, please let me know. :-)
 - Hallucinates a lot, due to small model size. That's the drawback for being usable without network.
 - Each question is considered as a new conversation.
 
