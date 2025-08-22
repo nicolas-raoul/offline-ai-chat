@@ -1,6 +1,6 @@
 # Privacy Policy for Offline AI chat
 
-**Effective Date:** [Date, e.g., April 16, 2025]
+**Effective Date:** April 16, 2025
 
 ---
 
