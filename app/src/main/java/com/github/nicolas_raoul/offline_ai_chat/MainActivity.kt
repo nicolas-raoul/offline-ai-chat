@@ -146,7 +146,8 @@ class MainActivity : AppCompatActivity() {
           context = applicationContext
           temperature = 0.2f
           topK = 16
-          maxOutputTokens = 256
+          //maxOutputTokens = 256
+          maxOutputTokens = 10000
         }
       )
   }
