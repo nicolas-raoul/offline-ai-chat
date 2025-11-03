@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity() {
               }
             }
         } catch (e: com.google.mlkit.genai.common.GenerativeAIException) {
-          android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.localizedMessage}")
+          android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.message}")
           endGeneratingUi()
         }
         inGenerating = false

@@ -24,6 +24,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.mlkit.genai.common.DownloadStatus
+import com.google.mlkit.genai.common.GenAiException
 import com.google.mlkit.genai.common.GenAiFeatures
 import kotlinx.coroutines.launch
 
@@ -70,7 +71,7 @@ class SetupActivity : AppCompatActivity() {
                         launchMainActivity()
                     }
 
-                    override fun onDownloadFailed(e: Exception) {
+                    override fun onDownloadFailed(e: GenAiException) {
                         statusTextView.text = "Model download failed: ${e.message}"
                         downloadButton.isEnabled = true
                     }
