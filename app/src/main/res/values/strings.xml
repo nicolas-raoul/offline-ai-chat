@@ -40,12 +40,4 @@ If you still get this screen, please file an issue on my <a href="https://github
 Thank you for your patience!
 </string>
   <string name="retry">Retry</string>
-  <string name="input_message_label">Input Message</string>
-  <string name="button_send">Send</string>
-  <string name="config_label">Config</string>
-  <string name="prefix_input_label">Prefix</string>
-  <string name="generating">Generating...</string>
-  <string name="input_message_is_empty">Input message is empty</string>
-  <string name="warning_prefix_used_with_image">Warning: Prefix is used with image, which is not supported. Prefix will be ignored.</string>
-  <string name="menu_open_prompt">Open Prompt</string>
 </resources>

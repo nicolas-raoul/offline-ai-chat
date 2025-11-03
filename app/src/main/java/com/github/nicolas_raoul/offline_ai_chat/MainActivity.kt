@@ -41,7 +41,8 @@ import com.github.nicolas_raoul.offline_ai_chat.R
 import com.google.mlkit.genai.common.GenerativeAIException
 import com.google.mlkit.genai.prompt.GenerativeModel
 import com.google.mlkit.genai.prompt.Generation
-import com.google.mlkit.genai.prompt.generationConfig
+import com.google.mlkit.genai.prompt.TextPart
+import com.google.mlkit.genai.prompt.generateContentRequest
 import java.util.concurrent.Future
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.future.future
@@ -131,11 +132,6 @@ class MainActivity : AppCompatActivity() {
         dialog.findViewById<TextView>(android.R.id.message)?.movementMethod = LinkMovementMethod.getInstance()
         true
       }
-      R.id.action_open_prompt -> {
-        val intent = Intent(this, OpenPromptActivity::class.java)
-        startActivity(intent)
-        true
-      }
       else -> super.onOptionsItemSelected(item)
     }
   }
@@ -146,14 +142,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun initGenerativeModel() {
-    model =
-      Generation.getClient(
-        generationConfig {
-          temperature = 0.2f
-          topK = 16
-          maxOutputTokens = 256
-        }
-      )
+    model = Generation.getClient()
   }
 
   private fun generateContent(request: String) {
@@ -162,8 +151,14 @@ class MainActivity : AppCompatActivity() {
         try {
           var hasFirstStreamingResult = false
           var result = ""
+          val genRequest =
+              generateContentRequest(TextPart(request)) {
+                temperature = 0.2f
+                topK = 16
+                maxOutputTokens = 256
+              }
           model!!
-            .generateContentStream(request)
+            .generateContentStream(genRequest)
             .onCompletion { endGeneratingUi() }
             .collect { response ->
               run {

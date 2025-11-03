@@ -5,8 +5,4 @@
         android:id="@+id/action_about"
         android:title="@string/menu_about"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_open_prompt"
-        android:title="@string/menu_open_prompt"
-        app:showAsAction="never" />
-</menu> 
+</menu>
