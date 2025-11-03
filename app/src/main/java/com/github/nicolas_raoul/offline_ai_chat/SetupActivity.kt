@@ -20,12 +20,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.mlkit.genai.common.DownloadStatus
-import com.google.mlkit.genai.common.GenAiException
-import com.google.mlkit.genai.common.GenAiFeatures
+import com.google.mlkit.genai.prompt.Generation
 import kotlinx.coroutines.launch
 
 class SetupActivity : AppCompatActivity() {
@@ -49,7 +47,8 @@ class SetupActivity : AppCompatActivity() {
 
     private fun checkModelStatus() {
         lifecycleScope.launch {
-            val isAvailable = GenAiFeatures.getGenerativeModelManager().isModelAvailable()
+            val generativeModel = Generation.getClient()
+            val isAvailable = generativeModel.checkStatus() == 0
             if (isAvailable) {
                 launchMainActivity()
             } else {
@@ -64,27 +63,28 @@ class SetupActivity : AppCompatActivity() {
         statusTextView.text = "Downloading model..."
 
         lifecycleScope.launch {
-            GenAiFeatures.getGenerativeModelManager().downloadModel(
-                object : com.google.mlkit.genai.common.DownloadCallback {
-                    override fun onDownloadCompleted() {
-                        statusTextView.text = "Model downloaded successfully."
-                        launchMainActivity()
-                    }
-
-                    override fun onDownloadFailed(e: GenAiException) {
-                        statusTextView.text = "Model download failed: ${e.message}"
-                        downloadButton.isEnabled = true
-                    }
-
-                    override fun onDownloadProgress(totalBytesDownloaded: Long) {
-                        statusTextView.text = "Downloading model... $totalBytesDownloaded bytes"
-                    }
-
-                    override fun onDownloadStarted(bytesToDownload: Long) {
-                        statusTextView.text = "Download started... $bytesToDownload bytes"
+            val generativeModel = Generation.getClient()
+            try {
+                generativeModel.download().collect { status ->
+                    when (status) {
+                        is DownloadStatus.DownloadStarted ->
+                            statusTextView.text = "Download started... ${status.bytesToDownload} bytes"
+                        is DownloadStatus.DownloadProgress ->
+                            statusTextView.text = "Downloading model... ${status.totalBytesDownloaded} bytes"
+                        is DownloadStatus.DownloadFailed -> {
+                            statusTextView.text = "Model download failed: ${status.e.message}"
+                            downloadButton.isEnabled = true
+                        }
+                        is DownloadStatus.DownloadCompleted -> {
+                            statusTextView.text = "Model downloaded successfully."
+                            launchMainActivity()
+                        }
                     }
                 }
-            )
+            } catch (e: Exception) {
+                statusTextView.text = "Model download failed: ${e.message}"
+                downloadButton.isEnabled = true
+            }
         }
     }
 

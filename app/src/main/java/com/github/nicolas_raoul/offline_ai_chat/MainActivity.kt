@@ -38,7 +38,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.nicolas_raoul.offline_ai_chat.ContentAdapter
 import com.github.nicolas_raoul.offline_ai_chat.R
-import com.google.mlkit.genai.common.GenerativeAIException
 import com.google.mlkit.genai.prompt.GenerativeModel
 import com.google.mlkit.genai.prompt.Generation
 import com.google.mlkit.genai.prompt.TextPart
@@ -167,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 }
               }
             }
-        } catch (e: GenerativeAIException) {
+        } catch (e: Exception) {
           android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.message}")
           endGeneratingUi()
         }
