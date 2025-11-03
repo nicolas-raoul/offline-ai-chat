@@ -38,7 +38,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.nicolas_raoul.offline_ai_chat.ContentAdapter
 import com.github.nicolas_raoul.offline_ai_chat.R
-import com.google.mlkit.genai.common.GenerativeAIException
 import com.google.mlkit.genai.prompt.GenerativeModel
 import com.google.mlkit.genai.prompt.Generation
 import com.google.mlkit.genai.prompt.TextPart
@@ -96,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     contentRecyclerView!!.layoutManager = LinearLayoutManager(this)
     contentRecyclerView!!.adapter = contentAdapter
 
-    initGenerativeModel()
+    model = Generation.getClient()
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -141,10 +140,6 @@ class MainActivity : AppCompatActivity() {
     model?.close()
   }
 
-  private fun initGenerativeModel() {
-    model = Generation.getClient()
-  }
-
   private fun generateContent(request: String) {
     generateContentFuture =
       lifecycleScope.future {
@@ -171,8 +166,8 @@ class MainActivity : AppCompatActivity() {
                 }
               }
             }
-        } catch (e: GenerativeAIException) {
-          android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.message}")
+        } catch (e: com.google.mlkit.genai.common.GenerativeAIException) {
+          android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.localizedMessage}")
           endGeneratingUi()
         }
         inGenerating = false
