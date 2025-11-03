@@ -36,11 +36,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.ai.edge.aicore.GenerativeAIException
-import com.google.ai.edge.aicore.GenerativeModel
 import com.github.nicolas_raoul.offline_ai_chat.ContentAdapter
 import com.github.nicolas_raoul.offline_ai_chat.R
-import com.google.ai.edge.aicore.generationConfig
+import com.google.mlkit.genai.common.GenerativeAIException
+import com.google.mlkit.genai.prompt.GenerativeModel
+import com.google.mlkit.genai.prompt.Generation
+import com.google.mlkit.genai.prompt.generationConfig
 import java.util.concurrent.Future
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.future.future
@@ -130,6 +131,11 @@ class MainActivity : AppCompatActivity() {
         dialog.findViewById<TextView>(android.R.id.message)?.movementMethod = LinkMovementMethod.getInstance()
         true
       }
+      R.id.action_open_prompt -> {
+        val intent = Intent(this, OpenPromptActivity::class.java)
+        startActivity(intent)
+        true
+      }
       else -> super.onOptionsItemSelected(item)
     }
   }
@@ -141,9 +147,8 @@ class MainActivity : AppCompatActivity() {
 
   private fun initGenerativeModel() {
     model =
-      GenerativeModel(
+      Generation.getClient(
         generationConfig {
-          context = applicationContext
           temperature = 0.2f
           topK = 16
           maxOutputTokens = 256
@@ -162,7 +167,7 @@ class MainActivity : AppCompatActivity() {
             .onCompletion { endGeneratingUi() }
             .collect { response ->
               run {
-                result += response.text
+                result += response.candidates.first().text
                 if (hasFirstStreamingResult) {
                   contentAdapter.updateStreamingResponse(result)
                 } else {

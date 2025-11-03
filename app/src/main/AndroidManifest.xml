@@ -26,7 +26,7 @@
       android:theme="@style/Theme.OfflineAIChat">
 
     <activity
-        android:name=".AICoreSetupActivity"
+        android:name=".MainActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
       </intent-filter>
     </activity>
     <activity
-        android:name=".MainActivity"
+        android:name=".OpenPromptActivity"
         android:exported="false" />
 
   </application>
