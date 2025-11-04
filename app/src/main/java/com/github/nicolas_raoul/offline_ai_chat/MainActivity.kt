@@ -36,11 +36,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.ai.edge.aicore.GenerativeAIException
-import com.google.ai.edge.aicore.GenerativeModel
 import com.github.nicolas_raoul.offline_ai_chat.ContentAdapter
 import com.github.nicolas_raoul.offline_ai_chat.R
-import com.google.ai.edge.aicore.generationConfig
+import com.google.mlkit.genai.prompt.GenerativeModel
+import com.google.mlkit.genai.prompt.Generation
+import com.google.mlkit.genai.prompt.TextPart
+import com.google.mlkit.genai.prompt.generateContentRequest
 import java.util.concurrent.Future
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.future.future
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     contentRecyclerView!!.layoutManager = LinearLayoutManager(this)
     contentRecyclerView!!.adapter = contentAdapter
 
-    initGenerativeModel()
+    model = Generation.getClient()
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -139,31 +140,24 @@ class MainActivity : AppCompatActivity() {
     model?.close()
   }
 
-  private fun initGenerativeModel() {
-    model =
-      GenerativeModel(
-        generationConfig {
-          context = applicationContext
-          temperature = 0.2f
-          topK = 16
-          //maxOutputTokens = 256
-          maxOutputTokens = 10000
-        }
-      )
-  }
-
   private fun generateContent(request: String) {
     generateContentFuture =
       lifecycleScope.future {
         try {
           var hasFirstStreamingResult = false
           var result = ""
+          val genRequest =
+              generateContentRequest(TextPart(request)) {
+                temperature = 0.2f
+                topK = 16
+                maxOutputTokens = 10000
+              }
           model!!
-            .generateContentStream(request)
+            .generateContentStream(genRequest)
             .onCompletion { endGeneratingUi() }
             .collect { response ->
               run {
-                result += response.text
+                result += response.candidates.first().text
                 if (hasFirstStreamingResult) {
                   contentAdapter.updateStreamingResponse(result)
                 } else {
@@ -172,7 +166,7 @@ class MainActivity : AppCompatActivity() {
                 }
               }
             }
-        } catch (e: GenerativeAIException) {
+        } catch (e: Exception) {
           android.util.Log.e("Offline AI chat MainActivity", "AICore failed: ${e.message}")
           endGeneratingUi()
         }
