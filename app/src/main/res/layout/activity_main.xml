@@ -14,44 +14,50 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="4dp"
-    android:orientation="vertical">
-
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="#FFF9C4"
-      android:textColor="#000000"
-      android:text="@string/disclaimer_title" />
-
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="#FFF9C4"
-      android:textColor="#000000"
-      android:text="@string/disclaimer_hallucination" />
-
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="#FFF9C4"
-      android:textColor="#000000"
-      android:text="@string/disclaimer_conversation" />
-
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/content_recycler_view"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1" />
+    android:paddingTop="56dp"
+    android:paddingBottom="16dp">
 
   <LinearLayout
+      android:id="@+id/disclaimer_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="horizontal">
+      android:layout_alignParentTop="true"
+      android:orientation="vertical"
+      android:background="#FFF9C4"
+      android:padding="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="@string/disclaimer_title"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="@string/disclaimer_hallucination" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="@string/disclaimer_conversation" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/input_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:orientation="horizontal"
+      android:padding="4dp">
 
     <EditText
         android:id="@+id/request_edit_text"
@@ -60,6 +66,8 @@
         android:layout_weight="1"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:scrollbars="vertical"
         tools:ignore="LabelFor" />
 
     <Button
@@ -70,4 +78,12 @@
 
   </LinearLayout>
 
-</LinearLayout>
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/content_recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/disclaimer_layout"
+      android:layout_above="@id/input_layout"
+      android:layout_margin="4dp" />
+
+</RelativeLayout>
