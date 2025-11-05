@@ -46,6 +46,7 @@ import java.util.concurrent.Future
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
+import androidx.activity.enableEdgeToEdge
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,6 +65,9 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    enableEdgeToEdge()
+
     setContentView(R.layout.activity_main)
 
     // Show app icon in title bar
@@ -150,7 +154,7 @@ class MainActivity : AppCompatActivity() {
               generateContentRequest(TextPart(request)) {
                 temperature = 0.2f
                 topK = 16
-                maxOutputTokens = 10000
+                maxOutputTokens = 256
               }
           model!!
             .generateContentStream(genRequest)
