@@ -21,7 +21,7 @@
   <string name="prompt_is_empty" translatable="false">Please enter an non empty prompt</string>
   <string name="empty" translatable="false"/>
   <string name="disclaimer_title">Important:</string>
-  <string name="disclaimer_hallucination">Hallucinates a lot, due to small model size. That\'s the drawback for being usable without Internet.</string>
+  <string name="disclaimer_hallucination">\n\nHallucinates a lot, due to small model size. That\'s the drawback for being usable without Internet.</string>
   <string name="disclaimer_conversation">Each question is considered as a new conversation.</string>
   <string name="menu_about" translatable="false">About</string>
   <string name="about_content" translatable="false">App source code is open: https://github.com/nicolas-raoul/offline-ai-chat\n\nPull requests very welcome!\n\nUses your device\'s embedded AICore model (presumably Gemini Nano).</string>
